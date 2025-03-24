@@ -1,0 +1,36 @@
+# 依赖目录
+node_modules/
+
+# 日志文件
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 运行时数据
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# 编辑器目录和文件
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# 构建输出
+dist/
+build/
+.vercel/
+
+# npm包管理器文件
+package-lock.json
+yarn.lock
+
+# 临时文件
+.tmp/
+.temp/ 

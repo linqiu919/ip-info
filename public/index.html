@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IP地址查询</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1 class="title">IP地址查询</h1>
+            <p class="subtitle">输入IP地址获取详细信息</p>
+            
+            <div class="search-box">
+                <input type="text" id="ipInput" placeholder="输入IP地址" class="ip-input">
+                <button id="queryBtn" class="query-btn">
+                    <i class="fas fa-search"></i> 查询
+                </button>
+            </div>
+            
+            <div id="resultContainer" class="result-container hidden">
+                <div class="result-row">
+                    <div class="result-item">
+                        <div class="icon-container">
+                            <i class="fas fa-hashtag"></i>
+                        </div>
+                        <div class="info">
+                            <span class="label">IP</span>
+                            <span id="ipResult" class="value">-</span>
+                        </div>
+                    </div>
+                    <div class="result-item">
+                        <div class="icon-container">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="info">
+                            <span class="label">国家</span>
+                            <span id="countryResult" class="value">-</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="result-row">
+                    <div class="result-item">
+                        <div class="icon-container">
+                            <i class="fas fa-flag"></i>
+                        </div>
+                        <div class="info">
+                            <span class="label">省份</span>
+                            <span id="provinceResult" class="value">-</span>
+                        </div>
+                    </div>
+                    <div class="result-item">
+                        <div class="icon-container">
+                            <i class="fas fa-map"></i>
+                        </div>
+                        <div class="info">
+                            <span class="label">城市</span>
+                            <span id="cityResult" class="value">-</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="result-row">
+                    <div class="result-item">
+                        <div class="icon-container">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <div class="info">
+                            <span class="label">区域</span>
+                            <span id="districtResult" class="value">-</span>
+                        </div>
+                    </div>
+                    <div class="result-item">
+                        <div class="icon-container">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div class="info">
+                            <span class="label">经纬度</span>
+                            <span id="latResult">-</span> / <span id="lngResult">-</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="loadingIndicator" class="loading-indicator hidden">
+                <div class="spinner"></div>
+                <p>正在查询...</p>
+            </div>
+            
+            <div id="errorMessage" class="error-message hidden">
+                <i class="fas fa-exclamation-circle"></i>
+                <p>查询失败，请检查IP地址是否正确</p>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html> 
