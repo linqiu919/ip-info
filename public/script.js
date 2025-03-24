@@ -73,6 +73,29 @@ document.addEventListener('DOMContentLoaded', function() {
             });
     }
     
+    // 添加撒花效果函数
+    function createConfetti() {
+        const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'];
+        const confettiCount = 50;
+        
+        for (let i = 0; i < confettiCount; i++) {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+            confetti.style.opacity = Math.random();
+            confetti.style.transform = `scale(${Math.random()})`;
+            
+            document.body.appendChild(confetti);
+            
+            // 动画结束后移除元素
+            confetti.addEventListener('animationend', () => {
+                confetti.remove();
+            });
+        }
+    }
+    
     // 处理API响应
     function handleResponse(data, ip) {
         loadingIndicator.classList.add('hidden');
@@ -98,6 +121,9 @@ document.addEventListener('DOMContentLoaded', function() {
         // 显示结果容器
         resultContainer.classList.remove('hidden');
         resultContainer.classList.add('visible');
+        
+        // 创建撒花效果
+        createConfetti();
         
         // 重置动画
         const resultItems = document.querySelectorAll('.result-item');
