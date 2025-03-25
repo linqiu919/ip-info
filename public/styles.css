@@ -13,6 +13,8 @@ body {
     min-height: 100vh;
     padding: 20px;
     overflow-x: hidden;
+    padding-bottom: 70px;
+    position: relative;
 }
 
 .container {
@@ -282,4 +284,47 @@ body {
 
 .confetti {
     animation: confetti-fall 3s ease-out forwards;
+}
+
+/* 页脚样式 */
+.footer {
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 30px;
+    border-top: 1px solid #eaeaea;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: #fff;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-link {
+    color: black;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-weight: 300;
+}
+
+.footer-link:hover {
+    color: black;
+    transform: scale(1.05);
+    display: inline-block;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .footer {
+        padding: 15px 0;
+    }
+    
+    body {
+        padding-bottom: 60px;
+    }
 } 

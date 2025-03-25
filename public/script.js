@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const districtResult = document.getElementById('districtResult');
     const latResult = document.getElementById('latResult');
     const lngResult = document.getElementById('lngResult');
+    const asResult = document.getElementById('asResult');
     
     // 查询按钮点击事件
     queryBtn.addEventListener('click', function() {
@@ -49,15 +50,17 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 查询IP信息
     function queryIPInfo(ip) {
-        // 显示加载指示器
-        resultContainer.classList.add('hidden');
+        // 隐藏错误信息
         errorMessage.classList.add('hidden');
+        
+        // 隐藏结果容器
+        resultContainer.classList.add('hidden');
+        
+        // 显示加载指示器
         loadingIndicator.classList.remove('hidden');
         
-        // 使用我们的代理API端点
-        const apiUrl = `/api/ip-info?ip=${ip}`;
-        
-        fetch(apiUrl)
+        // 发送API请求
+        fetch(`/api/ip-info?ip=${ip}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('网络响应不正常');
@@ -70,6 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
             .catch(error => {
                 console.error('查询失败:', error);
                 showError('查询失败，请稍后再试');
+                loadingIndicator.classList.add('hidden');
             });
     }
     
@@ -108,15 +112,18 @@ document.addEventListener('DOMContentLoaded', function() {
         // 填充结果
         ipResult.textContent = ip;
         
-        const rgeo = data.data.rgeo || {};
-        countryResult.textContent = rgeo.country || '-';
-        provinceResult.textContent = rgeo.province || '-';
-        cityResult.textContent = rgeo.city || '-';
-        districtResult.textContent = rgeo.district || '-';
+        const ipData = data.data;
+        countryResult.textContent = ipData.country || '-';
+        provinceResult.textContent = ipData.province || '-';
+        cityResult.textContent = ipData.city || '-';
+        districtResult.textContent = ipData.district || '-';
         
         // 经纬度
-        latResult.textContent = data.data.lat ? data.data.lat.toFixed(4) : '-';
-        lngResult.textContent = data.data.lng ? data.data.lng.toFixed(4) : '-';
+        latResult.textContent = ipData.latitude ? ipData.latitude.toFixed(4) : '-';
+        lngResult.textContent = ipData.longitude ? ipData.longitude.toFixed(4) : '-';
+        
+        // 运营商
+        asResult.textContent = ipData.as || '-';
         
         // 显示结果容器
         resultContainer.classList.remove('hidden');
@@ -137,11 +144,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 显示错误信息
     function showError(message) {
-        loadingIndicator.classList.add('hidden');
-        resultContainer.classList.add('hidden');
-        
-        const errorText = errorMessage.querySelector('p');
-        errorText.textContent = message;
+        errorMessage.textContent = message;
         errorMessage.classList.remove('hidden');
     }
 }); 

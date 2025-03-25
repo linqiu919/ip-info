@@ -11,7 +11,7 @@
     <div class="container">
         <div class="card">
             <h1 class="title">IP地址查询</h1>
-            <p class="subtitle">输入IP获取当前IP关联的地址信息</p>
+            <p class="subtitle">输入IP查询相关信息-仅供参考</p>
             
             <div class="search-box">
                 <input type="text" id="ipInput" placeholder="输入IP地址" class="ip-input">
@@ -69,17 +69,38 @@
                             <i class="fas fa-building"></i>
                         </div>
                         <div class="info">
-                            <span class="label">区域</span>
+                            <span class="label">区县</span>
                             <span id="districtResult" class="value">-</span>
                         </div>
                     </div>
                     <div class="result-item">
                         <div class="icon-container">
-                            <i class="fas fa-globe"></i>
+                            <i class="fas fa-network-wired"></i>
                         </div>
                         <div class="info">
-                            <span class="label">经纬度</span>
-                            <span id="latResult">-</span> / <span id="lngResult">-</span>
+                            <span class="label">运营商</span>
+                            <span id="asResult" class="value">-</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="result-row">
+                    <div class="result-item">
+                        <div class="icon-container">
+                            <i class="fas fa-map-pin"></i>
+                        </div>
+                        <div class="info">
+                            <span class="label">纬度</span>
+                            <span id="latResult" class="value">-</span>
+                        </div>
+                    </div>
+                    <div class="result-item">
+                        <div class="icon-container">
+                            <i class="fas fa-map-pin"></i>
+                        </div>
+                        <div class="info">
+                            <span class="label">经度</span>
+                            <span id="lngResult" class="value">-</span>
                         </div>
                     </div>
                 </div>
@@ -96,6 +117,12 @@
             </div>
         </div>
     </div>
+    
+    <footer class="footer">
+        <div class="footer-content">
+            <a href="https://bflome.com" target="_blank" class="footer-link">彼方</a>
+        </div>
+    </footer>
     
     <script src="script.js"></script>
 </body>
