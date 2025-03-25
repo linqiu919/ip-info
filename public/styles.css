@@ -34,9 +34,9 @@ body {
 .title {
     text-align: center;
     font-size: 2.2rem;
-    color: #333;
+    color: #4a4848;
     margin-bottom: 8px;
-    font-weight: 600;
+    font-weight: 500;
 }
 
 .subtitle {
