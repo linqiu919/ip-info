@@ -1,6 +1,14 @@
+// 加载环境变量
+require('dotenv').config();
+
 const express = require('express');
 const axios = require('axios');
 const path = require('path');
+
+// 环境变量配置
+const API_BASE_URL = process.env.API_BASE_URL || 'http://127.0.0.19:37099';
+const API_AUTH_TOKEN = process.env.API_AUTH_TOKEN || '123456';
+
 const app = express();
 const PORT = process.env.PORT || 33000;
 
@@ -15,11 +23,11 @@ app.get('/api/ip-info', async (req, res) => {
       return res.status(400).json({ error: '请提供IP地址' });
     }
 
-    const response = await axios.get(`http://140.245.69.89:37099/ip/${ip}`, {
+    const response = await axios.get(`${API_BASE_URL}/ip/${ip}`, {
       headers: {
         'Accept': '*/*',
         'Accept-Encoding': 'gzip, deflate, br',
-        'Authorization': 'qz1941131',
+        'Authorization': API_AUTH_TOKEN,
         'Connection': 'keep-alive',
         'User-Agent': 'PostmanRuntime-ApipostRuntime/1.1.0'
       }
@@ -44,4 +52,4 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 // 为Vercel无服务器环境导出
-module.exports = app; 
+module.exports = app;

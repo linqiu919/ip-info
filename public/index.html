@@ -4,22 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IP地址查询</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+    <!-- 侧边栏切换按钮 -->
+    <button id="sidebarToggle" class="sidebar-toggle" aria-label="切换菜单">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- 侧边栏 -->
+    <div id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">
+                <img src="favicon.svg" alt="Logo" class="sidebar-icon">
+                <h3 class="sidebar-title">工具列表</h3>
+            </div>
+            <button id="closeSidebar" class="close-sidebar" aria-label="关闭菜单">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <ul class="sidebar-menu">
+            <li>
+                <a href="index.html" class="active">
+                    <i class="fas fa-search"></i> IP信息查询
+                </a>
+            </li>
+            <li>
+                <a href="list-compare.html">
+                    <i class="fas fa-exchange-alt"></i> 列表比较工具
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- 遮罩层 -->
+    <div id="sidebarOverlay" class="sidebar-overlay"></div>
+
     <div class="container">
         <div class="card">
             <h1 class="title">IP信息查询</h1>
             <p class="subtitle">输入IP查询相关信息 - 仅供参考</p>
-            
+
             <div class="search-box">
                 <input type="text" id="ipInput" placeholder="输入IP地址" class="ip-input">
                 <button id="queryBtn" class="query-btn">
                     <i class="fas fa-search"></i> 查询
                 </button>
             </div>
-            
+
             <div id="resultContainer" class="result-container hidden">
                 <div class="result-row">
                     <div class="result-item">
@@ -41,7 +75,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="result-row">
                     <div class="result-item">
                         <div class="icon-container">
@@ -62,7 +96,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="result-row">
                     <div class="result-item">
                         <div class="icon-container">
@@ -83,7 +117,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="result-row">
                     <div class="result-item">
                         <div class="icon-container">
@@ -105,25 +139,69 @@
                     </div>
                 </div>
             </div>
-            
+
             <div id="loadingIndicator" class="loading-indicator hidden">
                 <div class="spinner"></div>
                 <p>正在查询...</p>
             </div>
-            
+
             <div id="errorMessage" class="error-message hidden">
                 <i class="fas fa-exclamation-circle"></i>
                 <p>查询失败，请检查IP地址是否正确</p>
             </div>
         </div>
     </div>
-    
+
     <footer class="footer">
         <div class="footer-content">
-            <a href="https://bflome.com" target="_blank" class="footer-link">彼方</a>
+            开发者：
+            <a href="https://github.com/deanxv" target="_blank" class="footer-link">Deanxv</a>
+            <a href="https://github.com/linqiu919" target="_blank" class="footer-link"> | Linqiu</a>
         </div>
     </footer>
-    
+
     <script src="script.js"></script>
+
+    <!-- 侧边栏控制脚本 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebar = document.getElementById('sidebar');
+            const sidebarToggle = document.getElementById('sidebarToggle');
+            const closeSidebar = document.getElementById('closeSidebar');
+            const sidebarOverlay = document.getElementById('sidebarOverlay');
+            const body = document.body;
+
+            // 打开侧边栏
+            sidebarToggle.addEventListener('click', function() {
+                sidebar.classList.add('open');
+                sidebarOverlay.classList.add('active');
+                body.classList.add('sidebar-open');
+            });
+
+            // 关闭侧边栏
+            function closeSidebarFunc() {
+                sidebar.classList.remove('open');
+                sidebarOverlay.classList.remove('active');
+                body.classList.remove('sidebar-open');
+            }
+
+            closeSidebar.addEventListener('click', closeSidebarFunc);
+            sidebarOverlay.addEventListener('click', closeSidebarFunc);
+
+            // 标记当前激活页面
+            const currentPath = window.location.pathname;
+            const menuLinks = document.querySelectorAll('.sidebar-menu a');
+
+            menuLinks.forEach(link => {
+                const linkPath = link.getAttribute('href');
+                if (currentPath.endsWith(linkPath) ||
+                    (currentPath === '/' && linkPath === 'index.html')) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        });
+    </script>
 </body>
-</html> 
+</html>

@@ -1,7 +1,7 @@
 {
   "name": "ip-lookup",
   "version": "1.0.0",
-  "description": "IP地址查询工具",
+  "description": "IP地址查询页面",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "axios": "^1.6.0",
+    "dotenv": "^16.3.1",
     "express": "^4.18.2"
   },
   "devDependencies": {
@@ -17,4 +18,4 @@
   "engines": {
     "node": ">=14.0.0"
   }
-} 
+}
